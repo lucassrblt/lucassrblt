@@ -11,7 +11,7 @@ Currently Front-End Developper at Telemedicine Tegnologies, a company that creat
 * 🚀  Also working on a [NodeJS Course](https://github.com/lucassrblt/NodeJs---Course)
 * 🧠  I'm learning MERN, Typescript
 * ✉️  You can contact me at [lucasrblt@outlook.com](mailto:lucasrblt@outlook.com)
-* 
+
 
 ### Stack
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
