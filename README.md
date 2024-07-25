@@ -6,6 +6,7 @@ I am Lucas Rimbault. Student. Full-stack developper. Traveler. Sporty.
 - 🔭 I’m currently working at Télémédicine Technologies.
 - 🌱 I’m currently learning NextJS and Framer-Motion. 
 - 📫 How to reach me: lucasrblt@outlook.com
+- 👀 <a href="lucasrblt.me">Check my portfolio</a>
 - ⚡ Fun fact: I never touched a computer before starting web developpement.
 
 
