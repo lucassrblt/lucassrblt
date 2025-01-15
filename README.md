@@ -3,8 +3,8 @@
 I am Lucas Rimbault. Student. Full-stack developper. Traveler. Sporty.             
 
 - 🌍 I'm based in Paris
-- 🔭 I’m currently working at Télémédicine Technologies.
-- 🌱 I’m currently learning Laravel. 
+- 🔭 I’m currently working at Télémédicine Technologies with Spring-Boot.
+- 🌱 I’m currently learning Laravel as my own. 
 - 📫 How to reach me: lucasrblt@outlook.com
 - 👀 <a href="https://lucasrblt.me">Check my portfolio</a>
 - ⚡ Fun fact: I never touched a computer before starting web developpement.
@@ -13,8 +13,6 @@ I am Lucas Rimbault. Student. Full-stack developper. Traveler. Sporty.
 ### Stack
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Next](https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
-![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
