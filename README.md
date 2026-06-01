@@ -1,55 +1,37 @@
-# lucasrblt.me — Portfolio
+# Lucas Rimbault
 
-Site de présentation personnel de **Lucas Rimbault**, développeur full-stack.
-Single page minimaliste (présentation · projets · contact), inspirée des codes
-épurés de [joulse.com](https://www.joulse.com/).
+**Développeur full-stack** — je conçois et livre des applications web modernes en
+**TypeScript / Next.js**, du front public à l'API, la base de données et le déploiement.
 
-> Branche `feat/portfolio-site`. Le profil GitHub (README affiché sur `main`) est
-> conservé dans [`PROFILE.md`](./PROFILE.md).
+🌐 [lucasrblt.me](https://lucasrblt.me)
 
-## Stack
+---
 
-- **Next.js 16** (App Router) · **React 19** · **TypeScript**
-- **Tailwind CSS v4** · **shadcn/ui** (base color neutral)
-- **Framer Motion** pour les apparitions « smooth »
+### Stack
 
-## Démarrer
+- **Langages** — TypeScript, JavaScript, C#
+- **Front** — Next.js (App Router), React, Tailwind CSS, TanStack React Query, Framer Motion
+- **Back** — Next.js route handlers, Node.js, Prisma, PostgreSQL, Zod
+- **Outils & infra** — Vercel, Supabase, Docker, GitHub Actions (CI), Biome, Vitest
 
-```bash
-npm install
-npm run dev      # http://localhost:3000
-```
+---
 
-## Scripts
+### Projet phare — Cabinet Rimbault
 
-| Commande        | Rôle                          |
-| --------------- | ----------------------------- |
-| `npm run dev`   | Serveur de développement      |
-| `npm run build` | Build de production           |
-| `npm run start` | Sert le build de production   |
-| `npm run lint`  | Lint ESLint                   |
+Plateforme web complète pour une agence immobilière, en **architecture découplée à 3 services**
+(la vitrine reste en ligne indépendamment des déploiements du back-office).
 
-## Structure
+| Service | Rôle | Stack |
+|---|---|---|
+| [cabinet-rimbault-vitrine](https://github.com/lucassrblt/cabinet-rimbault-vitrine) | Site vitrine public — catalogue de biens, fiches, formulaires, SEO/JSON-LD | Next.js · Tailwind v4 · React Query |
+| [cabinet-rimbault-api](https://github.com/lucassrblt/cabinet-rimbault-api) | API publique consommée par la vitrine | Next.js route handlers · Prisma · PostgreSQL |
+| [cabinet-rimbault-admin](https://github.com/lucassrblt/cabinet-rimbault-admin) | Back-office — biens, leads, estimations, emails transactionnels | Next.js · Prisma · NextAuth · Resend |
 
-```
-app/
-  layout.tsx          # métadonnées SEO, police, lang fr
-  page.tsx            # assemble les sections (single page)
-  globals.css         # thème shadcn (clair, neutral)
-components/
-  site-header.tsx     # header minimal translucide
-  hero.tsx            # section Présentation
-  projects.tsx        # section Projets
-  project-card.tsx    # carte projet réutilisable
-  contact.tsx         # section Contact (liens externes)
-  site-footer.tsx     # footer
-  section.tsx         # conteneur de section réutilisable
-  reveal.tsx          # animation d'apparition (Framer Motion)
-lib/
-  content.ts          # ← contenu éditable (nom, stack, projets, liens)
-```
+🔗 **En production :** [cabinet-rimbault.fr](https://cabinet-rimbault.fr)
 
-## Éditer le contenu
+---
 
-Tout le texte (présentation, projets, liens) est centralisé dans
-[`lib/content.ts`](./lib/content.ts) — il suffit d'y modifier les objets/tableaux.
+<p>
+  <img src="https://github-readme-stats.vercel.app/api?username=lucassrblt&show_icons=true&hide_border=true&count_private=true" height="160" alt="stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=lucassrblt&layout=compact&hide_border=true" height="160" alt="top languages" />
+</p>

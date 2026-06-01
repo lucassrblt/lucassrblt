@@ -13,7 +13,43 @@ export const site = {
   location: "France",
   email: "lrimbault92@gmail.com",
   website: "https://lucasrblt.me",
+  // Signal de confiance affiché dans le hero.
+  availability: "Disponible pour de nouveaux projets",
 } as const;
+
+/** Bloc d'appel à l'action de la section contact (orienté client). */
+export const cta = {
+  title: "Travaillons ensemble",
+  subtitle:
+    "Un projet web à concrétiser ou une équipe à renforcer ? Parlons-en — réponse sous 24 h.",
+} as const;
+
+export type Service = {
+  title: string;
+  description: string;
+};
+
+/**
+ * « Ce que je fais » — clarifie l'offre pour rassurer un client,
+ * en trois points concis (on reste minimaliste).
+ */
+export const services: Service[] = [
+  {
+    title: "Applications web",
+    description:
+      "Interfaces rapides et soignées en Next.js / React, du prototype à la production.",
+  },
+  {
+    title: "APIs & back-end",
+    description:
+      "Logique métier, bases de données et APIs robustes (Node.js, Prisma, PostgreSQL).",
+  },
+  {
+    title: "Déploiement & infra",
+    description:
+      "Mise en ligne, CI/CD et suivi — un produit livré, stable et maintenable.",
+  },
+];
 
 /** Stack affichée sous forme de badges dans la section présentation. */
 export const stack: string[] = [
