@@ -1,49 +1,67 @@
 import { ArrowUpRight, Mail } from "lucide-react";
-import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
+import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
+import { BadgeSticker } from "@/components/badge-sticker";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { cta, site, socials } from "@/lib/content";
+import { contact, socials } from "@/lib/content";
 
 /**
- * Section Contact — appel à l'action orienté client, puis liste de liens
- * externes épurée dans l'esprit « Elsewhere » de joulse.com.
+ * Section Contact : bloc de couleur pleine (fond orange), gros titre, CTA en
+ * pill noir et liens Email / Instagram / LinkedIn.
  */
 export function Contact() {
   return (
-    <Section id="contact" eyebrow="Contact">
-      <Reveal>
-        <h2 className="text-2xl font-semibold tracking-tight">{cta.title}</h2>
-        <p className="mt-3 max-w-xl text-base leading-relaxed text-muted-foreground">
-          {cta.subtitle}
+    <Section
+      id="contact"
+      width="wide"
+      className="border-t-2 border-foreground bg-primary text-primary-foreground"
+    >
+      <Reveal className="flex justify-center">
+        <BadgeSticker tone="ink" wiggle>
+          Devis gratuit
+        </BadgeSticker>
+      </Reveal>
+
+      <Reveal delay={0.06}>
+        <h2 className="mx-auto mt-6 max-w-3xl text-center font-display text-[clamp(2.4rem,6vw,5rem)] leading-[0.95] font-extrabold tracking-tight">
+          {contact.title}
+        </h2>
+        <p className="mx-auto mt-5 max-w-xl text-center text-lg leading-relaxed text-primary-foreground/90">
+          {contact.subtitle}
         </p>
       </Reveal>
 
-      <Reveal delay={0.08}>
+      <Reveal delay={0.12} className="mt-8 flex justify-center">
         <a
-          href={`mailto:${site.email}`}
-          className={cn(buttonVariants({ size: "lg" }), "mt-6")}
+          href={contact.cta.href}
+          className={cn(
+            buttonVariants(),
+            "h-12 rounded-full border-2 border-foreground bg-foreground px-7 text-base font-extrabold text-background shadow-[4px_4px_0_0_var(--background)] transition-transform hover:-translate-y-0.5 hover:bg-foreground",
+          )}
         >
-          <Mail className="size-4" />
-          {site.email}
+          <Mail className="size-5" />
+          {contact.cta.label}
         </a>
       </Reveal>
 
-      <RevealGroup className="mt-10 divide-y divide-border/60 border-y border-border/60">
-        {socials.map((link) => (
-          <RevealItem key={link.href}>
-            <a
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-              className="group flex items-center justify-between py-3.5 text-sm transition-colors hover:text-muted-foreground"
-            >
-              <span>{link.label}</span>
-              <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-          </RevealItem>
-        ))}
-      </RevealGroup>
+      <Reveal delay={0.18}>
+        <ul className="mx-auto mt-10 flex max-w-md flex-wrap items-center justify-center gap-3 text-sm font-bold">
+          {socials.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                className="inline-flex items-center gap-1 rounded-full border-2 border-foreground bg-background px-4 py-2 text-foreground transition-transform hover:-translate-y-0.5"
+              >
+                {link.label}
+                <ArrowUpRight className="size-4" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
     </Section>
   );
 }

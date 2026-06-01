@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { site } from "@/lib/content";
+import { site, hero } from "@/lib/content";
 
-const geistSans = Geist({
-  variable: "--font-sans",
+const display = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["600", "700", "800"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sans = Hanken_Grotesk({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: `${site.name} — ${site.role}`,
-  description: site.tagline,
+  description: hero.subtitle,
   metadataBase: new URL(site.website),
   openGraph: {
     title: `${site.name} — ${site.role}`,
-    description: site.tagline,
+    description: hero.subtitle,
     url: site.website,
     siteName: site.name,
     locale: "fr_FR",
@@ -36,18 +36,10 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${display.variable} ${sans.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange={false}
-        >
-          {children}
-        </ThemeProvider>
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        {children}
       </body>
     </html>
   );

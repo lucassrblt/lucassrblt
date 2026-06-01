@@ -1,8 +1,12 @@
 import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
-import { Services } from "@/components/services";
+import { Audience } from "@/components/audience";
+import { Offers } from "@/components/offers";
 import { Projects } from "@/components/projects";
+import { Process } from "@/components/process";
+import { Pricing } from "@/components/pricing";
+import { Testimonials } from "@/components/testimonials";
 import { Contact } from "@/components/contact";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -11,10 +15,14 @@ export default function Home() {
     <>
       <ScrollProgress />
       <SiteHeader />
-      <main id="top" className="mx-auto w-full max-w-2xl flex-1 px-6">
+      <main className="flex-1">
         <Hero />
-        <Services />
+        <Audience />
+        <Offers />
         <Projects />
+        <Process />
+        <Pricing />
+        <Testimonials />
         <Contact />
       </main>
       <SiteFooter />

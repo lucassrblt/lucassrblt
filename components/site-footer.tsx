@@ -1,14 +1,17 @@
 import { site } from "@/lib/content";
 
-/** Footer minimal. L'année est statique (squelette) — à rendre dynamique si besoin. */
+/** Footer « Enseigne » : wordmark + signature discrète du fondateur. */
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/60">
-      <div className="mx-auto flex max-w-2xl items-center justify-between px-6 py-8 text-xs text-muted-foreground">
-        <span>
-          © {site.name}
+    <footer className="border-t-2 border-foreground bg-background">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm sm:flex-row">
+        <span className="font-display text-xl font-extrabold lowercase tracking-tight">
+          {site.name}
+          <span className="text-primary">.</span>
         </span>
-        <span>Conçu avec Next.js &amp; Tailwind</span>
+        <span className="text-muted-foreground">
+          {site.name} — studio web · fondé par {site.founder}
+        </span>
       </div>
     </footer>
   );

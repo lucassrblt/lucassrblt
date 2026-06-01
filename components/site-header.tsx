@@ -2,25 +2,23 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { site } from "@/lib/content";
+import { buttonVariants } from "@/components/ui/button";
+import { site, hero } from "@/lib/content";
 
 const navItems = [
-  { id: "about", label: "À propos" },
-  { id: "projects", label: "Projets" },
+  { id: "offres", label: "Offres" },
+  { id: "realisations", label: "Réalisations" },
+  { id: "tarifs", label: "Tarifs" },
   { id: "contact", label: "Contact" },
 ];
 
 /**
- * Header minimal translucide, façon joulse.com.
- * Client component : une ombre apparaît au scroll et un indicateur glisse
- * sous la section active (transition partagée via layoutId).
+ * Header « Enseigne » : wordmark bold, nav, gros bouton « Devis ».
+ * Une bordure franche apparaît au scroll. Pas de theme-toggle (thème clair).
  */
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState<string>("about");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -29,65 +27,45 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const sections = navItems
-      .map((item) => document.getElementById(item.id))
-      .filter((el): el is HTMLElement => el !== null);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        }
-      },
-      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
-    );
-
-    sections.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b backdrop-blur-md transition-colors",
+        "sticky top-0 z-50 transition-colors",
         scrolled
-          ? "border-border/60 bg-background/80 shadow-sm"
-          : "border-transparent bg-background/40",
+          ? "border-b-2 border-foreground bg-background/95 backdrop-blur-md"
+          : "border-b-2 border-transparent bg-background/70 backdrop-blur",
       )}
     >
-      <div className="mx-auto flex h-14 max-w-2xl items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link
           href="#top"
-          className="text-sm font-medium tracking-tight transition-opacity hover:opacity-70"
+          className="font-display text-2xl font-extrabold lowercase tracking-tight transition-transform hover:-rotate-2"
         >
           {site.name}
+          <span className="text-primary">.</span>
         </Link>
-        <nav className="flex items-center gap-1 text-sm">
+
+        <nav className="hidden items-center gap-1 text-sm font-semibold md:flex">
           {navItems.map((item) => (
             <Link
               key={item.id}
               href={`#${item.id}`}
-              className={cn(
-                "relative rounded-full px-3 py-1.5 transition-colors",
-                active === item.id
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
+              className="rounded-full px-3 py-1.5 text-foreground/70 transition-colors hover:text-foreground"
             >
-              {active === item.id ? (
-                <motion.span
-                  layoutId="nav-active"
-                  className="absolute inset-0 -z-10 rounded-full bg-muted"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              ) : null}
               {item.label}
             </Link>
           ))}
-          <span className="mx-1 h-4 w-px bg-border" aria-hidden />
-          <ThemeToggle />
         </nav>
+
+        <a
+          href={hero.ctaPrimary.href}
+          className={cn(
+            buttonVariants(),
+            "h-10 rounded-full border-2 border-foreground bg-primary px-5 text-sm font-extrabold text-primary-foreground shadow-[3px_3px_0_0_var(--foreground)] transition-transform hover:-translate-y-0.5 hover:bg-primary",
+          )}
+        >
+          Devis
+        </a>
       </div>
     </header>
   );
