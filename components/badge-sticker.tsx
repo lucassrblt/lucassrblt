@@ -3,36 +3,32 @@ import { cn } from "@/lib/utils";
 
 type BadgeStickerProps = {
   children: ReactNode;
-  /** Variante de couleur du sticker. */
-  tone?: "orange" | "ink" | "cobalt" | "paper";
+  /** Variante de couleur du badge. */
+  tone?: "primary" | "ink" | "accent" | "paper";
   className?: string;
-  /** Active le léger wiggle (off par défaut pour les usages statiques). */
-  wiggle?: boolean;
 };
 
 const tones: Record<NonNullable<BadgeStickerProps["tone"]>, string> = {
-  orange: "bg-primary text-primary-foreground border-foreground",
-  ink: "bg-foreground text-background border-foreground",
-  cobalt: "bg-secondary text-secondary-foreground border-foreground",
-  paper: "bg-card text-foreground border-foreground",
+  primary: "bg-primary text-primary-foreground",
+  ink: "bg-foreground text-background",
+  accent: "bg-accent text-accent-foreground",
+  paper: "bg-card text-foreground border border-border shadow-soft",
 };
 
 /**
- * Badge/sticker incliné « affiche » : bord épais, rounded-full, légèrement
- * tourné. Sert à coller des accroches du genre « RÉSERVATIONS 24/7 ».
+ * Badge « pill » sobre : capitales, posé bien droit. Sert aux accroches
+ * du genre « RÉSERVATIONS 24/7 » et aux étiquettes de statut.
  */
 export function BadgeSticker({
   children,
-  tone = "orange",
+  tone = "primary",
   className,
-  wiggle = false,
 }: BadgeStickerProps) {
   return (
     <span
       className={cn(
-        "inline-flex -rotate-6 items-center rounded-full border-2 px-4 py-1.5 text-xs font-extrabold tracking-wide uppercase shadow-[3px_3px_0_0_var(--foreground)]",
+        "inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide",
         tones[tone],
-        wiggle && "animate-wiggle",
         className,
       )}
     >

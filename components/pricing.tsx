@@ -2,83 +2,128 @@ import { Check } from "lucide-react";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { BadgeSticker } from "@/components/badge-sticker";
+import { MagneticButton } from "@/components/magnetic";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { plans, hero } from "@/lib/content";
+import { plans, includedAll, hero } from "@/lib/content";
 
 /**
- * Section Tarifs : 3 formules. La formule « populaire » est mise en avant
- * (fond orange, sticker incliné, lift permanent).
+ * Section Tarifs : un socle « tout inclus » commun, puis 3 formules qui ne
+ * diffèrent que sur le périmètre (effet d'escalier). « Pro » mise en avant.
  */
 export function Pricing() {
   return (
-    <Section id="tarifs" eyebrow="Tarifs" width="wide">
+    <Section
+      id="tarifs"
+      eyebrow="Tarifs"
+      title="Des formules transparentes et adaptées à vos besoins."
+      lead="Des points de départ clairs — le tarif final dépend de votre projet. Chaque devis est gratuit et sans engagement."
+      width="wide"
+    >
+      {/* Socle « inclus dans toutes les formules » */}
       <Reveal>
-        <h2 className="max-w-2xl font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[0.98] font-extrabold tracking-tight">
-          Des prix clairs, <span className="text-primary">sans surprise</span>.
-        </h2>
+        <div className="mb-8 rounded-2xl border border-border bg-muted/50 p-5 sm:p-6">
+          <p className="text-sm font-bold uppercase tracking-wide text-primary">
+            Inclus dans toutes les formules
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-foreground/80">
+            {includedAll.map((item) => (
+              <li key={item} className="inline-flex items-center gap-1.5">
+                <Check className="size-4 shrink-0 text-primary" strokeWidth={3} />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </Reveal>
 
-      <RevealGroup className="mt-12 grid items-start gap-6 md:grid-cols-3">
+      <RevealGroup className="grid items-start gap-5 md:grid-cols-3">
         {plans.map((plan) => (
-          <RevealItem key={plan.name}>
+          <RevealItem key={plan.name} className="h-full">
             <div
               className={cn(
-                "relative flex h-full flex-col rounded-2xl border-2 border-foreground p-6 shadow-[5px_5px_0_0_var(--foreground)]",
+                "relative flex h-full flex-col rounded-2xl p-6 shadow-soft",
                 plan.popular
-                  ? "bg-primary text-primary-foreground md:-translate-y-3"
-                  : "bg-card text-foreground",
+                  ? "bg-primary text-primary-foreground shadow-soft-lg md:-translate-y-3"
+                  : "border border-border bg-card text-foreground",
               )}
             >
               {plan.popular ? (
                 <BadgeSticker
                   tone="ink"
-                  className="absolute -right-3 -top-4 rotate-6 text-[10px]"
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px]"
                 >
-                  Le + choisi
+                  Populaire
                 </BadgeSticker>
               ) : null}
 
-              <h3 className="font-display text-2xl font-extrabold tracking-tight">
+              <h3 className="text-sm font-bold uppercase tracking-wide">
                 {plan.name}
               </h3>
-              <p className="mt-2 font-display text-3xl font-extrabold">
+              <p
+                className={cn(
+                  "mt-1 text-sm",
+                  plan.popular ? "text-primary-foreground/80" : "text-muted-foreground",
+                )}
+              >
+                {plan.tagline}
+              </p>
+              <p className="mt-4 font-display text-3xl font-extrabold tracking-tight">
                 {plan.price}
               </p>
 
+              {plan.inherits ? (
+                <p
+                  className={cn(
+                    "mt-6 text-xs font-bold uppercase tracking-wide",
+                    plan.popular ? "text-primary-foreground/80" : "text-primary",
+                  )}
+                >
+                  {plan.inherits}
+                </p>
+              ) : null}
+
               <ul
                 className={cn(
-                  "mt-6 flex-1 space-y-3 text-sm",
-                  plan.popular ? "text-primary-foreground/90" : "text-muted-foreground",
+                  "flex-1 space-y-3 text-sm",
+                  plan.inherits ? "mt-3" : "mt-6",
+                  plan.popular ? "text-primary-foreground/90" : "text-foreground/80",
                 )}
               >
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2">
-                    <span
+                  <li key={feature} className="flex items-start gap-2.5">
+                    <Check
                       className={cn(
-                        "mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full border-2 border-current",
-                        plan.popular ? "bg-primary-foreground text-primary" : "bg-foreground text-background",
+                        "mt-0.5 size-4 shrink-0",
+                        plan.popular ? "text-primary-foreground" : "text-primary",
                       )}
-                    >
-                      <Check className="size-3" strokeWidth={3} />
-                    </span>
+                      strokeWidth={3}
+                    />
                     {feature}
                   </li>
                 ))}
               </ul>
 
-              <a
+              <MagneticButton
                 href={hero.ctaPrimary.href}
                 className={cn(
                   buttonVariants(),
-                  "mt-8 h-11 rounded-full border-2 border-foreground px-5 text-sm font-extrabold transition-transform hover:-translate-y-0.5",
+                  "mt-8 h-11 rounded-full px-5 text-sm font-bold",
                   plan.popular
-                    ? "bg-foreground text-background hover:bg-foreground"
-                    : "bg-primary text-primary-foreground hover:bg-primary",
+                    ? "bg-background text-foreground hover:bg-background"
+                    : "bg-primary text-primary-foreground shadow-soft hover:bg-primary",
                 )}
               >
                 Demander un devis
-              </a>
+              </MagneticButton>
+              <p
+                className={cn(
+                  "mt-3 text-center text-xs",
+                  plan.popular ? "text-primary-foreground/70" : "text-muted-foreground",
+                )}
+              >
+                Devis gratuit · sans engagement
+              </p>
             </div>
           </RevealItem>
         ))}

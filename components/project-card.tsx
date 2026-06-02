@@ -1,59 +1,55 @@
-"use client";
-
 import { ArrowUpRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
-import { BrowserMockup } from "@/components/browser-mockup";
-import { BadgeSticker } from "@/components/badge-sticker";
+import { SitePreview } from "@/components/site-preview";
+import { TiltCard } from "@/components/tilt-card";
+import { CountUp } from "@/components/count-up";
 import type { Project } from "@/lib/content";
 
 /**
- * Carte réalisation « affiche » : mockup CSS du site en haut, infos en bas,
- * sticker de statut incliné. Lift au survol (off si prefers-reduced-motion).
+ * Carte réalisation (taille uniforme) : capture du site conçu (SitePreview) +
+ * pastille de résultat + légende. Toute la carte mène au site en ligne.
+ * Léger tilt 3D au survol.
  */
 export function ProjectCard({ project }: { project: Project }) {
-  const reduceMotion = useReducedMotion();
+  const { metric } = project;
 
   return (
-    <motion.div
-      whileHover={reduceMotion ? undefined : { y: -6 }}
-      transition={{ type: "spring", stiffness: 280, damping: 22 }}
-      className="group relative h-full overflow-hidden rounded-2xl border-2 border-foreground bg-card shadow-[5px_5px_0_0_var(--foreground)]"
-    >
-      {/* Sticker de statut */}
-      <BadgeSticker
-        tone={project.status === "En ligne" ? "orange" : "cobalt"}
-        className="absolute right-4 top-4 z-10 rotate-6 text-[10px]"
-      >
-        {project.status}
-      </BadgeSticker>
+    <div className="group flex h-full flex-col">
+      <TiltCard max={4} className="relative">
+        <SitePreview data={project.preview} image={project.image} />
 
-      <div className="bg-muted p-5">
-        <BrowserMockup domain={project.domain} kind={project.kind} />
-      </div>
+        {/* Lien superposé : toute la preview mène au site */}
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`Voir le site ${project.title} (nouvel onglet)`}
+          className="absolute inset-0 z-10 rounded-2xl"
+        />
 
-      <div className="border-t-2 border-foreground p-5">
-        <p className="text-xs font-bold uppercase tracking-wide text-primary">
-          {project.category}
-        </p>
-        <h3 className="mt-1 font-display text-2xl font-extrabold tracking-tight">
-          {project.href ? (
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 transition-opacity hover:opacity-80"
-            >
-              {project.title}
-              <ArrowUpRight className="size-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-          ) : (
-            project.title
-          )}
-        </h3>
-        <p className="mt-2 leading-relaxed text-muted-foreground">
-          {project.description}
-        </p>
+        {/* Pastille de résultat (décorative) */}
+        <div className="pointer-events-none absolute bottom-4 right-4 z-20 rounded-2xl bg-primary px-4 py-3 text-primary-foreground shadow-soft-lg">
+          <p className="font-display text-2xl font-extrabold leading-none tracking-tight">
+            <CountUp to={metric.to} prefix={metric.prefix} suffix={metric.suffix} />
+          </p>
+          <p className="mt-1 max-w-[8rem] text-[11px] leading-tight text-primary-foreground/90">
+            {metric.label}
+          </p>
+        </div>
+      </TiltCard>
+
+      {/* Légende */}
+      <div className="mt-5">
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-1.5 font-display text-lg font-bold tracking-tight transition-colors hover:text-primary"
+        >
+          {project.title}
+          <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </a>
+        <p className="text-sm text-muted-foreground">{project.sector}</p>
       </div>
-    </motion.div>
+    </div>
   );
 }

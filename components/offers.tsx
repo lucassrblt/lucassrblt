@@ -1,39 +1,47 @@
 import { Store, CalendarCheck, MapPin, Palette, type LucideIcon } from "lucide-react";
-import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
+import { RevealGroup, RevealItem } from "@/components/reveal";
 import { Section } from "@/components/section";
+import { TiltCard } from "@/components/tilt-card";
 import { offers } from "@/lib/content";
 
 const icons: LucideIcon[] = [Store, CalendarCheck, MapPin, Palette];
 
 /**
- * Section Offres : 4 cartes franches, bord épais et ombre portée « affiche ».
- * Survol = léger lift + bascule de couleur de l'icône.
+ * Section Offres (layout split) : titre à gauche, 4 cartes à droite.
+ * Cartes blanches sobres, léger tilt 3D au survol.
  */
 export function Offers() {
   return (
-    <Section id="offres" eyebrow="Nos offres" width="wide">
-      <Reveal>
-        <h2 className="max-w-2xl font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[0.98] font-extrabold tracking-tight">
-          Tout ce qu&apos;il faut pour <span className="text-primary">vendre en ligne</span>.
-        </h2>
-      </Reveal>
-
-      <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2">
+    <Section
+      id="offres"
+      eyebrow="Nos offres"
+      title={
+        <>
+          Tout ce qu&apos;il vous faut pour{" "}
+          <span className="text-primary">réussir en ligne</span>.
+        </>
+      }
+      width="wide"
+    >
+      <RevealGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {offers.map((offer, i) => {
           const Icon = icons[i] ?? Store;
           return (
-            <RevealItem key={offer.title}>
-              <div className="group h-full rounded-2xl border-2 border-foreground bg-card p-6 shadow-[5px_5px_0_0_var(--foreground)] transition-transform hover:-translate-y-1 hover:-rotate-1">
-                <span className="inline-flex size-12 items-center justify-center rounded-xl border-2 border-foreground bg-accent text-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <Icon className="size-6" strokeWidth={2} />
+            <RevealItem key={offer.title} className="h-full">
+              <TiltCard
+                max={5}
+                className="group flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-soft"
+              >
+                <span className="inline-flex size-11 items-center justify-center rounded-xl bg-accent text-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Icon className="size-5" strokeWidth={2} />
                 </span>
-                <h3 className="mt-4 font-display text-2xl font-extrabold tracking-tight">
+                <h3 className="mt-4 text-base font-bold tracking-tight">
                   {offer.title}
                 </h3>
-                <p className="mt-2 leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {offer.description}
                 </p>
-              </div>
+              </TiltCard>
             </RevealItem>
           );
         })}

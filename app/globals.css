@@ -24,8 +24,6 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --color-ink: var(--ink);
-  --color-cobalt: var(--cobalt);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -36,39 +34,37 @@
 }
 
 /*
- * Palette « Enseigne » — bold pop.
- * Blanc cassé #FBFAF7, noir franc #0E0E0E, orange électrique #FF4D17 (primary),
- * bleu cobalt #1C39BB en secondaire à doser. Thème clair unique.
+ * Palette « Biome · soft » — bold typographique, mais posé.
+ * Fond clair frais, encre teal foncée (plutôt que noir franc), accent
+ * teal pétrole (#2c6e6d) et cyan clair (#c4eaee). Thème clair unique.
  */
 :root {
-  --background: #fbfaf7;
-  --foreground: #0e0e0e;
-  --ink: #0e0e0e;
-  --cobalt: #1c39bb;
+  --background: #f6f9f8; /* blanc cassé légèrement froid */
+  --foreground: #15302e; /* encre teal foncée */
 
   --card: #ffffff;
-  --card-foreground: #0e0e0e;
+  --card-foreground: #15302e;
   --popover: #ffffff;
-  --popover-foreground: #0e0e0e;
+  --popover-foreground: #15302e;
 
-  --primary: #ff4d17;
+  --primary: #2c6e6d; /* teal pétrole (remplace l'orange) */
   --primary-foreground: #ffffff;
 
-  --secondary: #1c39bb;
+  --secondary: #5aa3a0; /* teal moyen, à doser */
   --secondary-foreground: #ffffff;
 
-  --muted: #f2efe8;
-  --muted-foreground: #5a564e;
+  --muted: #e9f1ef; /* teal très pâle */
+  --muted-foreground: #5a716e;
 
-  --accent: #ffe9d6;
-  --accent-foreground: #0e0e0e;
+  --accent: #c4eaee; /* cyan clair (le sticker du screen) */
+  --accent-foreground: #15302e;
 
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #e6e1d6;
-  --input: #e6e1d6;
-  --ring: #ff4d17;
+  --border: #d9e6e3;
+  --input: #d9e6e3;
+  --ring: #2c6e6d;
 
-  --radius: 0.75rem;
+  --radius: 0.875rem;
 }
 
 @layer base {
@@ -103,8 +99,23 @@
 }
 
 @layer utilities {
+  /*
+   * Ombres douces (remplacent les ombres dures « affiche » du néo-brutalisme).
+   * Teintées dans l'encre teal pour rester cohérentes avec la palette.
+   */
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px rgba(21, 48, 46, 0.04),
+      0 12px 32px -14px rgba(21, 48, 46, 0.16);
+  }
+  .shadow-soft-lg {
+    box-shadow:
+      0 2px 6px rgba(21, 48, 46, 0.05),
+      0 28px 64px -22px rgba(21, 48, 46, 0.24);
+  }
+
   /* Marquee horizontal infini (types de commerces). */
-  @keyframes enseigne-marquee {
+  @keyframes biome-marquee {
     from {
       transform: translateX(0);
     }
@@ -113,37 +124,9 @@
     }
   }
   .animate-marquee {
-    animation: enseigne-marquee 28s linear infinite;
+    animation: biome-marquee 26s linear infinite;
   }
   .animate-marquee-fast {
-    animation: enseigne-marquee 18s linear infinite;
-  }
-
-  /* Wiggle léger pour les stickers inclinés. */
-  @keyframes enseigne-wiggle {
-    0%,
-    100% {
-      transform: rotate(var(--wiggle-from, -6deg));
-    }
-    50% {
-      transform: rotate(var(--wiggle-to, -2deg));
-    }
-  }
-  .animate-wiggle {
-    animation: enseigne-wiggle 3.2s ease-in-out infinite;
-  }
-
-  /* Flottement vertical doux. */
-  @keyframes enseigne-float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
-  .animate-float {
-    animation: enseigne-float 4s ease-in-out infinite;
+    animation: biome-marquee 18s linear infinite;
   }
 }

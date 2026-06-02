@@ -1,37 +1,44 @@
 import { Star } from "lucide-react";
-import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
+import { RevealGroup, RevealItem } from "@/components/reveal";
 import { Section } from "@/components/section";
+import { PlaceholderImage } from "@/components/placeholder-image";
 import { testimonials } from "@/lib/content";
 
 /**
- * Section Témoignages : 3 cartes « affiche » avec 5 étoiles et citation.
- * Contenu placeholder réaliste, éditable dans lib/content.ts.
+ * Section Témoignages (layout split) : titre à gauche, 3 cartes à droite —
+ * avatar (placeholder) + nom + métier + citation + 5 étoiles.
  */
 export function Testimonials() {
   return (
-    <Section id="temoignages" eyebrow="Ils en parlent" width="wide">
-      <Reveal>
-        <h2 className="max-w-2xl font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[0.98] font-extrabold tracking-tight">
-          Des commerçants <span className="text-primary">contents</span>.
-        </h2>
-      </Reveal>
-
-      <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
+    <Section
+      id="temoignages"
+      eyebrow="Témoignages"
+      title="Des commerçants satisfaits, des résultats qui parlent."
+      width="wide"
+    >
+      <RevealGroup className="grid gap-5 md:grid-cols-3">
         {testimonials.map((t) => (
-          <RevealItem key={t.author}>
-            <figure className="flex h-full flex-col rounded-2xl border-2 border-foreground bg-card p-6 shadow-[5px_5px_0_0_var(--foreground)]">
-              <div className="flex gap-0.5 text-primary">
+          <RevealItem key={t.author} className="h-full">
+            <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <div className="flex items-center gap-3">
+                {/* TODO: remplacer par la vraie photo (next/image) */}
+                <PlaceholderImage
+                  rounded="rounded-full"
+                  className="size-11 shrink-0"
+                />
+                <figcaption>
+                  <p className="text-sm font-bold">{t.author}</p>
+                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                </figcaption>
+              </div>
+              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-foreground/80">
+                « {t.quote} »
+              </blockquote>
+              <div className="mt-5 flex gap-0.5 text-primary">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="size-4 fill-current" />
                 ))}
               </div>
-              <blockquote className="mt-4 flex-1 font-display text-xl font-bold leading-snug tracking-tight">
-                « {t.quote} »
-              </blockquote>
-              <figcaption className="mt-5 text-sm font-semibold">
-                {t.author}
-                <span className="font-normal text-muted-foreground"> — {t.business}</span>
-              </figcaption>
             </figure>
           </RevealItem>
         ))}
