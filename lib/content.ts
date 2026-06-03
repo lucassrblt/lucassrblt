@@ -13,6 +13,26 @@ export const site = {
   location: "France",
 } as const;
 
+/**
+ * Données pour les pages légales (mentions légales + confidentialité).
+ * Seules les variables vivent ici → remplir SIRET / adresse / date plus tard
+ * sans toucher au code des pages. Statut : micro-entreprise.
+ */
+export const legal = {
+  entityName: site.founder,
+  status: "Micro-entreprise",
+  siret: "À COMPLÉTER", // ← n° SIRET à renseigner dès immatriculation
+  address: "À COMPLÉTER", // ← adresse complète (n°, rue, CP, ville)
+  publicationDirector: site.founder,
+  vatNote: "TVA non applicable, art. 293 B du CGI", // franchise en base micro
+  host: {
+    name: "Vercel Inc.",
+    address: "340 S Lemon Avenue #4133, Walnut, CA 91789, États-Unis",
+    url: "https://vercel.com",
+  },
+  updatedAt: "À COMPLÉTER", // ex. « juin 2026 » — date d'entrée en vigueur
+} as const;
+
 /** Données d'un mockup de site affiché dans un cadre navigateur. */
 export type SitePreviewData = {
   brand: string;
@@ -32,13 +52,16 @@ export const hero = {
     "On crée des sites web rapides, bien référencés sur Google (SEO), qui transforment vos visiteurs en clients.",
   ctaPrimary: { label: "Démarrer un projet", href: `mailto:${site.email}` },
   ctaSecondary: { label: "Voir nos réalisations", href: "#realisations" },
-  reassurance: ["Livré en 7 jours", "Sans engagement", "Note 5/5"],
+  reassurance: ["Livré en 7 jours", "Sans engagement", "Interlocuteur unique"],
 } as const;
 
-/** Cartes de stats flottantes du hero. */
+/**
+ * Cartes de stats flottantes du hero — chiffres vrais sur l'offre (pas de
+ * résultat client inventé).
+ */
 export const heroStats = [
-  { to: 120, prefix: "+", suffix: "%", label: "de visites en 3 mois" },
-  { to: 65, prefix: "+", suffix: "%", label: "de contacts en moyenne" },
+  { to: 7, prefix: "", suffix: "", label: "jours pour être en ligne" },
+  { to: 100, prefix: "", suffix: " %", label: "mobile & rapide" },
 ] as const;
 
 /** Mockup de vitrine affiché dans le hero (capture du site mise en avant). */
@@ -99,6 +122,8 @@ export type Project = {
   title: string;
   /** Métier · ville, affiché en légende. */
   sector: string;
+  /** Honnêteté : vrai projet client vs démo de démonstration. */
+  kind: "client" | "demo";
   /** Lien vers le site en ligne. */
   href: string;
   /**
@@ -107,8 +132,11 @@ export type Project = {
    * (ex. "/realisations/maison-lavigne.png"). Tant que vide → placeholder.
    */
   image?: string;
-  /** Résultat mis en avant (pastille) — illustratif pour l'instant. */
-  metric: { to: number; prefix?: string; suffix?: string; label: string };
+  /**
+   * Fonctionnalité réelle mise en avant (pastille) — décrit ce que la maquette
+   * propose vraiment, sans résultat chiffré inventé.
+   */
+  feature: string;
   /** Cas vedette (carte large). */
   featured?: boolean;
   /** Contenu du mockup de site. */
@@ -119,9 +147,10 @@ export const projects: Project[] = [
   {
     title: "Maison Lavigne",
     sector: "Bistrot de marché",
+    kind: "demo",
     href: "https://maison-lavigne.vercel.app",
     image: "/realisations/maison-lavigne.png",
-    metric: { to: 120, prefix: "+", suffix: "%", label: "de réservations en 4 mois" },
+    feature: "Réservation en ligne",
     featured: true,
     preview: {
       brand: "Maison Lavigne",
@@ -136,9 +165,10 @@ export const projects: Project[] = [
   {
     title: "Atelier Brut",
     sector: "Barbier",
+    kind: "demo",
     href: "https://atelier-brut-pink.vercel.app",
     image: "/realisations/atelier-brut.png",
-    metric: { to: 85, prefix: "+", suffix: "%", label: "de prises de RDV en ligne" },
+    feature: "Prise de RDV en ligne",
     preview: {
       brand: "Atelier Brut",
       domain: "atelier-brut.fr",
@@ -152,9 +182,10 @@ export const projects: Project[] = [
   {
     title: "Atelier Vernier",
     sector: "Menuiserie sur-mesure",
+    kind: "demo",
     href: "https://atelier-vernier.vercel.app",
     image: "/realisations/atelier-vernier.png",
-    metric: { to: 70, prefix: "+", suffix: "%", label: "de demandes de devis" },
+    feature: "Devis en ligne",
     preview: {
       brand: "Atelier Vernier",
       domain: "atelier-vernier.fr",
@@ -168,9 +199,10 @@ export const projects: Project[] = [
   {
     title: "Cabinet Rimbault",
     sector: "Immobilier",
+    kind: "client",
     href: "https://cabinet-rimbault.fr?preview=lucas",
     image: "/realisations/cabinet-rimbault.png",
-    metric: { to: 60, prefix: "+", suffix: "%", label: "de contacts qualifiés" },
+    feature: "Estimation en ligne",
     preview: {
       brand: "Cabinet Rimbault",
       domain: "cabinet-rimbault.fr",
@@ -272,36 +304,6 @@ export const plans: Plan[] = [
       "Site multilingue",
       "Accompagnement dédié",
     ],
-  },
-];
-
-export type Testimonial = {
-  quote: string;
-  author: string;
-  role: string;
-};
-
-/**
- * Témoignages — placeholders réalistes, à remplacer par de vrais retours.
- */
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "Depuis la mise en ligne, nos réservations ont doublé le week-end. Le site nous ressemble et nos clients adorent !",
-    author: "Sophie L.",
-    role: "Restauratrice",
-  },
-  {
-    quote:
-      "Un site moderne, rapide et facile à gérer. On reçoit beaucoup plus d'appels et de nouveaux clients.",
-    author: "Karim B.",
-    role: "Coiffeur",
-  },
-  {
-    quote:
-      "L'équipe a compris notre univers et l'a parfaitement retranscrit. Je recommande à 100 % !",
-    author: "Nina R.",
-    role: "Boutique",
   },
 ];
 

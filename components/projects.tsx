@@ -14,9 +14,9 @@ export function Projects() {
       eyebrow="Réalisations"
       title={
         <>
-          Des sites qui génèrent
-          <br className="hidden sm:block" /> des{" "}
-          <span className="text-primary">résultats concrets</span>.
+          Des sites pensés
+          <br className="hidden sm:block" /> pour{" "}
+          <span className="text-primary">convertir</span>.
         </>
       }
       width="wide"
