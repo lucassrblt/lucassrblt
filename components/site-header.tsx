@@ -84,10 +84,12 @@ export function SiteHeader() {
           className="justify-self-start transition-opacity hover:opacity-70"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* h-18 dépasse la hauteur du header (h-16) : le logo grandit
+              visuellement en débordant, centré, sans pousser la barre. */}
           <img
             src="/biome.svg"
             alt={site.name}
-            className="h-12 w-auto sm:h-14"
+            className="block h-18 w-auto"
           />
         </Link>
 

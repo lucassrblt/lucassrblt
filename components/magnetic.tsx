@@ -14,12 +14,16 @@ export function MagneticButton({
   className,
   children,
   strength = 0.4,
+  target,
+  rel,
 }: {
   href: string;
   className?: string;
   children: ReactNode;
   /** Intensité de l'attraction (0–1). */
   strength?: number;
+  target?: string;
+  rel?: string;
 }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLAnchorElement>(null);
@@ -43,6 +47,8 @@ export function MagneticButton({
     <motion.a
       ref={ref}
       href={href}
+      target={target}
+      rel={rel}
       onMouseMove={onMove}
       onMouseLeave={reset}
       style={reduce ? undefined : { x: sx, y: sy }}

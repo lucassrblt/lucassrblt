@@ -1,10 +1,10 @@
 import type { ComponentType, SVGProps } from "react";
-import { Mail } from "lucide-react";
+import { Mail, CalendarCheck } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { MagneticButton } from "@/components/magnetic";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { contact, socials } from "@/lib/content";
+import { booking, contact, socials } from "@/lib/content";
 
 type IconProps = SVGProps<SVGSVGElement>;
 
@@ -67,16 +67,47 @@ export function Contact() {
                 <p className="mt-4 max-w-md leading-relaxed text-background/75">
                   {contact.subtitle}
                 </p>
-                <MagneticButton
-                  href={contact.cta.href}
-                  className={cn(
-                    buttonVariants(),
-                    "mt-8 h-12 rounded-full bg-background px-7 text-base font-bold text-foreground shadow-soft-lg hover:bg-background",
-                  )}
-                >
-                  <Mail className="size-5" />
-                  {contact.cta.label}
-                </MagneticButton>
+
+                {booking.url ? (
+                  /* RDV en ligne configuré : prise de rendez-vous en CTA principal
+                     (convertit mieux qu'un mailto), devis par email en repli. */
+                  <div className="mt-8 flex flex-col gap-4">
+                    <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+                      <MagneticButton
+                        href={booking.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={cn(
+                          buttonVariants(),
+                          "h-12 rounded-full bg-background px-7 text-base font-bold text-foreground shadow-soft-lg hover:bg-background",
+                        )}
+                      >
+                        <CalendarCheck className="size-5" />
+                        {booking.label}
+                      </MagneticButton>
+                      <a
+                        href={contact.cta.href}
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-background/85 underline-offset-4 transition-colors hover:text-background hover:underline"
+                      >
+                        <Mail className="size-4" />
+                        ou demandez un devis par email
+                      </a>
+                    </div>
+                    <p className="text-sm text-background/60">{booking.note}</p>
+                  </div>
+                ) : (
+                  /* Pas encore de lien RDV : on garde le devis par email. */
+                  <MagneticButton
+                    href={contact.cta.href}
+                    className={cn(
+                      buttonVariants(),
+                      "mt-8 h-12 rounded-full bg-background px-7 text-base font-bold text-foreground shadow-soft-lg hover:bg-background",
+                    )}
+                  >
+                    <Mail className="size-5" />
+                    {contact.cta.label}
+                  </MagneticButton>
+                )}
               </div>
 
               <ul className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold lg:flex-col lg:items-end">

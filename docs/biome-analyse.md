@@ -58,26 +58,34 @@ Next.js 16 (App Router) · Tailwind v4 · Framer Motion · Lenis. Contenu centra
       lieu de « résultats concrets »).
 - [ ] **Domaine professionnel** : `*.vercel.app` fait « pas fini ». Prendre **biome.studio** (ou .fr)
       — c'est le signal n°1 de sérieux quand on envoie un lien.
-- [~] **Nom + logo + favicon + image OG** — Nom **Biome** validé ✅. **Logo intégré** ✅ :
-      `public/biome.svg` (recoloré en teal primary `#2c6e6d`) affiché dans le header et le footer,
-      en remplacement du wordmark texte. Câblage OG fait : `metadataBase` pointe vers le domaine de
-      prod réel + **twitter card** → l'aperçu marche dès qu'une image est posée. **Reste à fournir
-      (toi)** : `app/favicon.ico` (remplacer celui de Next par défaut), `app/opengraph-image.png`
-      (1200×630). Specs favicon : `icon.png` 512² + `apple-icon.png` 180².
+- [x] **Nom + logo + favicon + image OG** — Nom **Biome** validé ✅. **Logo intégré** ✅
+      (`public/biome.svg`, header + footer). **Favicon** ✅ : défaut Next supprimé, remplacé par
+      `app/icon.svg` (monogramme « b » teal) + `app/icon.png` (512²) + `app/apple-icon.png` (180²),
+      générés depuis la marque. **Image OG** ✅ : `app/opengraph-image.tsx` la **génère par code**
+      (next/og) — dégradé teal + logo crème + promesse + réassurance, polices de la marque
+      embarquées (`assets/fonts/`). Statique, zéro coût runtime. `metadataBase` + twitter card déjà
+      câblés → l'aperçu fonctionne (passera automatiquement sur le vrai domaine une fois branché).
+      Détail à harmoniser un jour : la baseline du logo dit « agence web créative » ≠ « studio web
+      pour commerçants » du discours.
 - [x] **Pages légales** créées (cachées, `noindex`, non liées header/footer) : `/mentions-legales`
       + `/confidentialite` (RGPD). Données centralisées dans `lib/content.ts` (objet `legal`).
       **Reste à remplir (toi)** : `legal.siret`, `legal.address`, `legal.updatedAt`. La conf' est à
       mettre à jour quand on ajoutera formulaire/Calendly (#7) + analytics.
-- [ ] **Contact fiable** : aujourd'hui simple `mailto:`. Ajouter un **formulaire** (ou **Calendly**
-      pour booker un appel direct) — réduit énormément la friction.
-- [ ] **Meta / SEO de base** : titre, description, OG image (pour le partage et Google).
+- [~] **Contact fiable** : section RDV **en place** ✅ (`components/contact.tsx`), pilotée par
+      `booking.url` dans `lib/content.ts` — accepte une URL **Calendly OU Google** (« plages de
+      RDV »). Tant que vide, retombe proprement sur le devis par email. **Reste (toi)** : créer le
+      compte Calendly/Google, copier le lien dans `booking.url`. Une ligne à coller = contact qui
+      convertit.
+- [x] **Meta / SEO de base** : titre, description ✅ + **OG image** ✅ (générée par code, cf.
+      ci-dessus). Reste plus tard : sitemap/robots si besoin.
 
 ### 🟠 Important (conversion / pro)
 
 - [ ] **FAQ** (prix, délais, « et si je n'ai pas de logo / photos ? ») — désamorce les objections.
 - [ ] **Email professionnel** (contact@biome.studio) plutôt qu'un gmail perso.
 - [ ] **Analytics** (Plausible / Vercel Analytics) — mesurer visites et clics « devis ».
-- [ ] **Perf** : les captures sont en PNG (~20 Mo cumulés) → convertir en **webp**, alléger.
+- [x] **Perf** : captures converties en **WebP** ✅ (~20 Mo → ~200 Ko cumulés, redim. 1800px,
+      qualité 78, PNG supprimés). Références mises à jour dans `lib/content.ts`.
 - [ ] **QA mobile + accessibilité** : tester sur un vrai téléphone, contrastes, navigation clavier.
 
 ### 🟢 Plus tard
@@ -95,12 +103,13 @@ parfait**, il doit **survivre au clic sans red flag**. Un commerçant qui voit u
 `vercel.app` ou un formulaire cassé referme l'onglet. La perfection, elle, vient avec les retours réels.
 
 **Minimum crédible pour démarrer (tous ces points = GO) :**
-- [ ] Aucun **faux avis / chiffre inventé** visible (retirés ou étiquetés « démo »).
-- [ ] **Domaine pro** + nom + logo/favicon + **aperçu OG** propre au partage.
-- [ ] **Contact qui marche** (form ou Calendly testé de bout en bout).
-- [ ] **Pages légales** présentes.
-- [ ] **Impeccable sur mobile** (la majorité ouvriront le lien sur téléphone).
-- [ ] Réalisations honnêtes (démo = démo).
+- [x] Aucun **faux avis / chiffre inventé** visible (retirés ou étiquetés « démo »).
+- [~] **Domaine pro** + nom + logo/favicon + **aperçu OG** propre au partage → favicon + OG + logo
+      ✅ ; **manque le domaine** (acheter `biomestudio.fr` ou `biome-studio.fr`, brancher sur Vercel).
+- [~] **Contact qui marche** → section RDV codée ✅ ; **coller `booking.url`** (Calendly/Google) + tester.
+- [~] **Pages légales** présentes ✅ (structure) ; **remplir SIRET / adresse / date** dans `lib/content.ts`.
+- [ ] **Impeccable sur mobile** → à tester sur un vrai téléphone (serveur LAN dispo pour ça).
+- [x] Réalisations honnêtes (démo = démo).
 
 **Tu peux prospecter même s'il manque** : la FAQ, l'analytics avancée, le blog, des réalisations
 supplémentaires, l'optimisation perf fine. → Ne pas attendre ça pour commencer.

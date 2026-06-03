@@ -74,7 +74,7 @@ export const heroPreview: SitePreviewData = {
   heroCta: "Voir les biens",
   imageLabel: "Capture Cabinet Rimbault",
 };
-export const heroImage = "/realisations/cabinet-rimbault.png";
+export const heroImage = "/realisations/cabinet-rimbault.webp";
 
 /** « Pour qui » — types de commerces, défilent en marquee (avec picto). */
 export const audiences: string[] = [
@@ -149,7 +149,7 @@ export const projects: Project[] = [
     sector: "Bistrot de marché",
     kind: "demo",
     href: "https://maison-lavigne.vercel.app",
-    image: "/realisations/maison-lavigne.png",
+    image: "/realisations/maison-lavigne.webp",
     feature: "Réservation en ligne",
     featured: true,
     preview: {
@@ -167,7 +167,7 @@ export const projects: Project[] = [
     sector: "Barbier",
     kind: "demo",
     href: "https://atelier-brut-pink.vercel.app",
-    image: "/realisations/atelier-brut.png",
+    image: "/realisations/atelier-brut.webp",
     feature: "Prise de RDV en ligne",
     preview: {
       brand: "Atelier Brut",
@@ -184,7 +184,7 @@ export const projects: Project[] = [
     sector: "Menuiserie sur-mesure",
     kind: "demo",
     href: "https://atelier-vernier.vercel.app",
-    image: "/realisations/atelier-vernier.png",
+    image: "/realisations/atelier-vernier.webp",
     feature: "Devis en ligne",
     preview: {
       brand: "Atelier Vernier",
@@ -201,7 +201,7 @@ export const projects: Project[] = [
     sector: "Immobilier",
     kind: "client",
     href: "https://cabinet-rimbault.fr?preview=lucas",
-    image: "/realisations/cabinet-rimbault.png",
+    image: "/realisations/cabinet-rimbault.webp",
     feature: "Estimation en ligne",
     preview: {
       brand: "Cabinet Rimbault",
@@ -328,6 +328,19 @@ export const guarantees: Guarantee[] = [
     description: "Toujours la même personne, du premier contact au suivi.",
   },
 ];
+
+/**
+ * Prise de RDV. Colle ici l'URL de ton lien de réservation — fonctionne avec
+ * **Calendly** (ex. "https://calendly.com/biome/15min") OU **Google Agenda**
+ * (« plages de rendez-vous » → page publique qui crée un lien Meet auto).
+ * Laisse vide ("") tant que le compte n'est pas prêt : le site retombe alors
+ * proprement sur le bouton « devis par email », rien ne casse.
+ */
+export const booking = {
+  url: "", // ← URL Calendly ou Google « plages de RDV »
+  label: "Réserver un appel gratuit",
+  note: "15 min, sans engagement — on parle de votre projet.",
+} as const;
 
 /** Bloc d'appel à l'action de la section contact. */
 export const contact = {
