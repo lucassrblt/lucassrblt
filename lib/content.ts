@@ -7,16 +7,19 @@
 export const site = {
   name: "Biome",
   role: "Studio web pour commerçants",
-  email: "lrimbault92@gmail.com",
+  email: "biomestudio@gmail.com",
   founder: "Lucas Rimbault",
-  website: "https://biome.studio",
+  website: "https://www.biomestudio.fr",
   location: "France",
 } as const;
 
 /**
  * Données pour les pages légales (mentions légales + confidentialité).
- * Seules les variables vivent ici → remplir SIRET / adresse / date plus tard
- * sans toucher au code des pages. Statut : micro-entreprise.
+ *
+ * ⚠️ Pages retirées tant qu'aucune entreprise n'est immatriculée (pas de SIRET).
+ * Cet objet est conservé comme source prête à l'emploi : dès l'immatriculation,
+ * remplir siret / address / updatedAt puis restaurer les routes depuis git
+ * (`app/mentions-legales`, `app/confidentialite`, `components/legal-layout.tsx`).
  */
 export const legal = {
   entityName: site.founder,
@@ -356,4 +359,167 @@ export const socials: SocialLink[] = [
   { label: "Email", href: `mailto:${site.email}` },
   { label: "Instagram", href: "https://instagram.com/biome.studio" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/lucas-rimbault/" },
+];
+
+/* ------------------------------------------------------------------ *
+ * Landing pages SEO (route /offres/[slug])
+ *
+ * Pages d'entrée Google HORS de la nav one-page : invisibles pour le visiteur
+ * du scroll, mais accessibles et indexables pour qui arrive depuis une
+ * recherche. Chacune a un H1 + une intro + une FAQ UNIQUES (garde-fou
+ * anti-contenu-dupliqué / doorway) et ne réutilise que quelques sections du
+ * one-page, dans un ordre qui sert son intention.
+ *
+ * Pour ajouter une page : un objet de plus ici, c'est tout (route + sitemap +
+ * liens footer se mettent à jour automatiquement).
+ * ------------------------------------------------------------------ */
+
+/** Sections du one-page réutilisables dans une landing page. */
+export type LandingSection =
+  | "offers"
+  | "pricing"
+  | "process"
+  | "guarantees"
+  | "projects";
+
+export type LandingFaqItem = { question: string; answer: string };
+
+export type LandingPage = {
+  /** Segment d'URL : /offres/<slug>. Doit contenir le mot-clé. */
+  slug: string;
+  /** <title> (le template «  — Biome » est ajouté automatiquement). */
+  metaTitle: string;
+  metaDescription: string;
+  /** Petit intitulé en capitales au-dessus du H1. */
+  eyebrow: string;
+  /** H1 unique, porteur du mot-clé. */
+  h1: string;
+  /** Accroche sous le H1 (1-2 phrases). */
+  intro: string;
+  /** Libellé court pour les liens internes (footer). */
+  navLabel: string;
+  /** Sections du one-page à réafficher, dans l'ordre. */
+  sections: LandingSection[];
+  /** FAQ unique → contenu propre + schéma FAQPage (résultats enrichis). */
+  faq: LandingFaqItem[];
+};
+
+export const landingPages: LandingPage[] = [
+  {
+    slug: "site-internet-pas-cher",
+    metaTitle: "Site internet pas cher pour artisans et commerçants",
+    metaDescription:
+      "Un site web professionnel à petit prix, livré en 7 jours. Dès 690 €, tout inclus et sans abonnement caché — pensé pour les artisans, commerçants et indépendants.",
+    eyebrow: "Petit budget",
+    h1: "Un site internet pas cher, mais pas au rabais",
+    intro:
+      "Pas besoin d'un gros budget pour avoir un site qui inspire confiance. On crée des sites vitrines soignés dès 690 €, tout compris : nom de domaine, hébergement, email pro et référencement. Idéal quand on se lance et qu'on veut maîtriser ses dépenses.",
+    navLabel: "Site pas cher",
+    sections: ["pricing", "offers", "guarantees"],
+    faq: [
+      {
+        question: "Combien coûte un site internet pas cher ?",
+        answer:
+          "Nos sites vitrines démarrent à 690 € en formule Essentiel, tout inclus. Le tarif final dépend du nombre de pages et des fonctionnalités, mais le devis est toujours gratuit et sans surprise.",
+      },
+      {
+        question: "« Pas cher », ça veut dire de mauvaise qualité ?",
+        answer:
+          "Non. Le prix est bas parce qu'on travaille en direct, sans intermédiaire, avec des outils modernes et un site livré en 7 jours. Le design reste sur-mesure, rapide et 100 % adapté au mobile.",
+      },
+      {
+        question: "Y a-t-il un abonnement mensuel caché ?",
+        answer:
+          "Non. Le prix annoncé couvre la création du site, le nom de domaine, l'hébergement, le certificat SSL, un email professionnel et 6 mois de maintenance. Aucun frais surprise.",
+      },
+      {
+        question: "Le nom de domaine et l'hébergement sont-ils compris ?",
+        answer:
+          "Oui, ils sont inclus dans toutes les formules, avec le certificat SSL (HTTPS) et un email professionnel. On s'occupe de tout, vous n'avez rien à gérer techniquement.",
+      },
+      {
+        question: "En combien de temps mon site est-il en ligne ?",
+        answer:
+          "Comptez environ 7 jours entre notre premier échange et la mise en ligne, une fois vos contenus réunis.",
+      },
+    ],
+  },
+  {
+    slug: "prix-site-internet",
+    metaTitle: "Prix d'un site internet : combien ça coûte vraiment ?",
+    metaDescription:
+      "Le prix d'un site internet professionnel expliqué simplement. Formules dès 690 €, devis gratuit et sans engagement, et ce qui fait réellement varier le tarif.",
+    eyebrow: "Tarifs transparents",
+    h1: "Combien coûte un site internet ?",
+    intro:
+      "Le prix d'un site internet varie surtout selon le nombre de pages, les fonctionnalités (réservation, e-commerce…) et le contenu à produire. Chez nous, les repères sont clairs : des formules à partir de 690 €, tout inclus, et un devis gratuit adapté à votre projet.",
+    navLabel: "Prix",
+    sections: ["pricing", "process", "guarantees"],
+    faq: [
+      {
+        question: "Quel est le prix d'un site vitrine ?",
+        answer:
+          "Un site vitrine démarre à 690 € (formule Essentiel) et autour de 1 290 € pour une formule Pro multi-pages avec réservation. Le prix exact dépend de votre projet — le devis est gratuit.",
+      },
+      {
+        question: "Pourquoi les prix varient autant d'une agence à l'autre ?",
+        answer:
+          "Parce que le périmètre change : nombre de pages, fonctionnalités, création de contenu et de visuels, et surtout les frais de structure de l'agence. En travaillant en direct, on garde des tarifs serrés.",
+      },
+      {
+        question: "Faut-il payer chaque mois ?",
+        answer:
+          "Non. Vous payez la création du site une fois. Le nom de domaine, l'hébergement et 6 mois de maintenance sont compris ; au-delà, la maintenance reste optionnelle.",
+      },
+      {
+        question: "Le devis est-il payant ?",
+        answer:
+          "Non, le devis est gratuit et sans engagement. On commence par un échange pour cerner votre besoin, puis on vous propose un tarif clair.",
+      },
+      {
+        question: "Qu'est-ce qui fait monter le prix ?",
+        answer:
+          "Principalement les fonctionnalités avancées (e-commerce, prise de rendez-vous, intégrations métier, multilingue) et le volume de contenu à créer. Tout est détaillé dans le devis.",
+      },
+    ],
+  },
+  {
+    slug: "creer-site-internet-commerce",
+    metaTitle: "Créer un site internet pour son commerce",
+    metaDescription:
+      "Vous voulez créer un site internet pour votre commerce ? On s'occupe de tout, de A à Z, en 7 jours : design sur-mesure, mobile, bien référencé sur Google.",
+    eyebrow: "Votre présence en ligne",
+    h1: "Créer le site internet de votre commerce, sans prise de tête",
+    intro:
+      "Vous avez un commerce et vous voulez (enfin) un vrai site internet ? On s'occupe de tout, de la conception à la mise en ligne : un site moderne, rapide, pensé pour vos clients et bien référencé sur Google. Vous gardez votre métier, on gère le web.",
+    navLabel: "Créer mon site",
+    sections: ["process", "offers", "projects"],
+    faq: [
+      {
+        question: "Comment créer un site internet pour mon commerce ?",
+        answer:
+          "Le plus simple : on en discute. On part de votre activité et de vos objectifs, on conçoit le site, on le met en ligne et on vous accompagne pour le prendre en main. Vous n'avez rien de technique à gérer.",
+      },
+      {
+        question: "Ai-je besoin de compétences techniques ?",
+        answer:
+          "Aucune. On s'occupe du nom de domaine, de l'hébergement, du design et de la mise en ligne. Vous nous fournissez les infos sur votre commerce, on fait le reste.",
+      },
+      {
+        question: "Pourrai-je modifier mon site moi-même ensuite ?",
+        answer:
+          "Oui, on vous forme à la prise en main pour les modifications courantes, et on reste disponible en cas de besoin grâce à l'astreinte et à la maintenance incluse.",
+      },
+      {
+        question: "Mon site sera-t-il visible sur Google ?",
+        answer:
+          "Oui. Le référencement local est intégré : on optimise votre fiche Google Business et les bases SEO pour que vos clients vous trouvent là où ils cherchent.",
+      },
+      {
+        question: "Faut-il déjà avoir un logo et des photos ?",
+        answer:
+          "Ce n'est pas obligatoire. On peut créer votre identité visuelle (logo, couleurs) et vous conseiller sur les visuels si vous n'en avez pas encore.",
+      },
+    ],
+  },
 ];

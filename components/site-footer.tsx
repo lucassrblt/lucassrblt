@@ -1,15 +1,32 @@
-import { site } from "@/lib/content";
+import Link from "next/link";
+import { site, landingPages } from "@/lib/content";
 
-/** Footer « biome » : wordmark à gauche, signature discrète à droite. */
+/**
+ * Footer « biome » : wordmark, liens vers les landing pages SEO (présents sur
+ * tout le site → maillage interne qui les rend crawlables), signature discrète.
+ */
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-background">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm sm:flex-row">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/biome.svg" alt={site.name} className="h-10 w-auto" />
-        <span className="text-muted-foreground">
-          {site.name.toUpperCase()} — Studio web
-        </span>
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 px-6 py-8 text-sm">
+        <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-muted-foreground">
+          {landingPages.map((page) => (
+            <Link
+              key={page.slug}
+              href={`/offres/${page.slug}`}
+              className="transition-colors hover:text-foreground"
+            >
+              {page.navLabel}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex w-full flex-col items-center justify-between gap-3 border-t border-border pt-5 sm:flex-row">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/biome.svg" alt={site.name} className="h-10 w-auto" />
+          <span className="text-muted-foreground">
+            {site.name.toUpperCase()} — Studio web
+          </span>
+        </div>
       </div>
     </footer>
   );
