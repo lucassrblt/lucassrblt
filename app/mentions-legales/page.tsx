@@ -3,7 +3,7 @@ import { LegalLayout } from "@/components/legal-layout";
 import { site, legal } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: `Mentions légales — ${site.name}`,
+  title: "Mentions légales",
   description: `Mentions légales du site ${site.name}.`,
   robots: { index: false, follow: false },
 };

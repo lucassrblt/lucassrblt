@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { JsonLd } from "@/components/json-ld";
 import { site, hero } from "@/lib/content";
+import { siteUrl } from "@/lib/site-url";
 
 const display = Bricolage_Grotesque({
   variable: "--font-display",
@@ -16,22 +18,37 @@ const sans = Hanken_Grotesk({
 });
 
 /**
- * URL canonique pour les liens absolus (og:image…). En prod Vercel on prend le
- * domaine de production réel (vercel.app aujourd'hui, biome.studio dès qu'il est
- * branché) → l'aperçu au partage fonctionne tout de suite. Fallback : site.website.
+ * Titre de la page d'accueil : on garde la marque « Biome » en tête mais on
+ * porte les mots-clés réellement recherchés par la cible (« création de site
+ * web », « commerçants », « artisans ») — personne ne tape « studio web pour
+ * commerçants ». Le template ajoute « — Biome » aux pages enfants.
  */
-const canonicalUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : site.website;
+const homeTitle = "Biome — Création de site web pour commerçants et artisans";
 
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.role}`,
+  title: {
+    default: homeTitle,
+    template: "%s — Biome",
+  },
   description: hero.subtitle,
-  metadataBase: new URL(canonicalUrl),
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: `${site.name} — ${site.role}`,
+    title: homeTitle,
     description: hero.subtitle,
-    url: canonicalUrl,
+    url: siteUrl,
     siteName: site.name,
     locale: "fr_FR",
     type: "website",
@@ -40,7 +57,7 @@ export const metadata: Metadata = {
   // automatiquement og:image. X/Twitter retombe sur cette image via la card ci-dessous.
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.role}`,
+    title: homeTitle,
     description: hero.subtitle,
   },
 };
@@ -56,6 +73,7 @@ export default function RootLayout({
       className={`${display.variable} ${sans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <JsonLd />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

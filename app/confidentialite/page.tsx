@@ -3,7 +3,7 @@ import { LegalLayout } from "@/components/legal-layout";
 import { site, legal } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: `Politique de confidentialité — ${site.name}`,
+  title: "Politique de confidentialité",
   description: `Politique de confidentialité et traitement des données du site ${site.name}.`,
   robots: { index: false, follow: false },
 };
