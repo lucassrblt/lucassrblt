@@ -24,11 +24,9 @@ export function Hero() {
 
           <Reveal delay={0.06}>
             <h1 className="mt-6 font-display text-[clamp(2.6rem,6.5vw,5rem)] leading-[1.02] font-extrabold tracking-tight">
-              Votre activité
+              Votre commerce,
               <br />
-              <span className="text-primary">a du talent.</span>
-              <br />
-              Votre site aussi.
+              <span className="text-primary">enfin bien en ligne.</span>
             </h1>
           </Reveal>
 

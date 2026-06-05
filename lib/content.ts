@@ -50,7 +50,7 @@ export type SitePreviewData = {
 /** Hero — promesse, CTA, réassurance, mockup vitrine + stats flottantes. */
 export const hero = {
   badge: "Plus de clients, plus de visibilité",
-  title: "Votre activité a du talent. Votre site aussi.",
+  title: "Votre commerce, enfin bien en ligne.",
   subtitle:
     "On crée des sites web rapides, bien référencés sur Google (SEO), qui transforment vos visiteurs en clients.",
   ctaPrimary: { label: "Démarrer un projet", href: `mailto:${site.email}` },
@@ -274,7 +274,7 @@ export const plans: Plan[] = [
   {
     name: "Essentiel",
     tagline: "Pour se lancer vite et bien",
-    price: "dès 690 €",
+    price: "dès 490 €",
     features: [
       "Site vitrine 1 page, design sur-mesure",
       "100 % mobile & rapide",
@@ -285,7 +285,7 @@ export const plans: Plan[] = [
   {
     name: "Pro",
     tagline: "Pour attirer et convertir plus",
-    price: "dès 1 290 €",
+    price: "dès 1 099 €",
     popular: true,
     inherits: "Tout l'Essentiel, plus :",
     features: [
@@ -408,36 +408,36 @@ export type LandingPage = {
 
 export const landingPages: LandingPage[] = [
   {
-    slug: "site-internet-pas-cher",
-    metaTitle: "Site internet pas cher pour artisans et commerçants",
+    slug: "site-internet-tous-budgets",
+    metaTitle: "Site internet de qualité, adapté à tous les budgets",
     metaDescription:
-      "Un site web professionnel à petit prix, livré en 7 jours. Dès 690 €, tout inclus et sans abonnement caché — pensé pour les artisans, commerçants et indépendants.",
-    eyebrow: "Petit budget",
-    h1: "Un site internet pas cher, mais pas au rabais",
+      "Un site web professionnel et soigné, pensé pour s'adapter à votre budget sans rogner sur la qualité. Livré en 7 jours, tout inclus dès 490 €, sans abonnement caché.",
+    eyebrow: "Pour tous les budgets",
+    h1: "Un site de qualité, quel que soit votre budget",
     intro:
-      "Pas besoin d'un gros budget pour avoir un site qui inspire confiance. On crée des sites vitrines soignés dès 690 €, tout compris : nom de domaine, hébergement, email pro et référencement. Idéal quand on se lance et qu'on veut maîtriser ses dépenses.",
-    navLabel: "Site pas cher",
+      "On adapte le périmètre de votre site à votre budget — jamais le soin qu'on y met. Du site vitrine essentiel à la version la plus complète, chaque projet est conçu sur-mesure, rapide et durable, pour inspirer confiance dès la première visite. Tout est inclus : nom de domaine, hébergement, email pro et référencement, sans abonnement caché.",
+    navLabel: "Tous budgets",
     sections: ["pricing", "offers", "guarantees"],
     faq: [
       {
-        question: "Combien coûte un site internet pas cher ?",
+        question: "Proposez-vous des sites adaptés à tous les budgets ?",
         answer:
-          "Nos sites vitrines démarrent à 690 € en formule Essentiel, tout inclus. Le tarif final dépend du nombre de pages et des fonctionnalités, mais le devis est toujours gratuit et sans surprise.",
+          "Oui. Nos formules démarrent à 490 €, tout inclus, et on ajuste le périmètre (nombre de pages, fonctionnalités) à votre budget. L'objectif : un site qui vous ressemble, sans dépense inutile ni compromis sur la qualité.",
       },
       {
-        question: "« Pas cher », ça veut dire de mauvaise qualité ?",
+        question: "Un budget mesuré, est-ce que la qualité en pâtit ?",
         answer:
-          "Non. Le prix est bas parce qu'on travaille en direct, sans intermédiaire, avec des outils modernes et un site livré en 7 jours. Le design reste sur-mesure, rapide et 100 % adapté au mobile.",
+          "Non. Quel que soit le budget, le design reste sur-mesure, le site rapide et 100 % adapté au mobile. On ajuste l'étendue du projet, jamais le soin apporté à la finition.",
+      },
+      {
+        question: "Qu'est-ce qui est inclus dans le prix ?",
+        answer:
+          "Tout le nécessaire pour être en ligne sereinement : création du site, nom de domaine, hébergement, certificat SSL (HTTPS), email professionnel et 6 mois de maintenance. Aucun frais surprise.",
       },
       {
         question: "Y a-t-il un abonnement mensuel caché ?",
         answer:
-          "Non. Le prix annoncé couvre la création du site, le nom de domaine, l'hébergement, le certificat SSL, un email professionnel et 6 mois de maintenance. Aucun frais surprise.",
-      },
-      {
-        question: "Le nom de domaine et l'hébergement sont-ils compris ?",
-        answer:
-          "Oui, ils sont inclus dans toutes les formules, avec le certificat SSL (HTTPS) et un email professionnel. On s'occupe de tout, vous n'avez rien à gérer techniquement.",
+          "Non. Le prix annoncé est clair et complet, et vous restez propriétaire de votre site comme de votre nom de domaine.",
       },
       {
         question: "En combien de temps mon site est-il en ligne ?",
@@ -450,23 +450,23 @@ export const landingPages: LandingPage[] = [
     slug: "prix-site-internet",
     metaTitle: "Prix d'un site internet : combien ça coûte vraiment ?",
     metaDescription:
-      "Le prix d'un site internet professionnel expliqué simplement. Formules dès 690 €, devis gratuit et sans engagement, et ce qui fait réellement varier le tarif.",
+      "Le prix d'un site internet professionnel expliqué simplement. Formules dès 490 €, devis gratuit et sans engagement, et ce qui fait réellement varier le tarif.",
     eyebrow: "Tarifs transparents",
     h1: "Combien coûte un site internet ?",
     intro:
-      "Le prix d'un site internet varie surtout selon le nombre de pages, les fonctionnalités (réservation, e-commerce…) et le contenu à produire. Chez nous, les repères sont clairs : des formules à partir de 690 €, tout inclus, et un devis gratuit adapté à votre projet.",
+      "Le prix d'un site internet varie surtout selon le nombre de pages, les fonctionnalités (réservation, e-commerce…) et le contenu à produire. Chez nous, les repères sont clairs : des formules à partir de 490 €, tout inclus, et un devis gratuit adapté à votre projet.",
     navLabel: "Prix",
     sections: ["pricing", "process", "guarantees"],
     faq: [
       {
         question: "Quel est le prix d'un site vitrine ?",
         answer:
-          "Un site vitrine démarre à 690 € (formule Essentiel) et autour de 1 290 € pour une formule Pro multi-pages avec réservation. Le prix exact dépend de votre projet — le devis est gratuit.",
+          "Un site vitrine démarre à 490 € (formule Essentiel) et autour de 1 099 € pour une formule Pro multi-pages avec réservation. Le prix exact dépend de votre projet — le devis est gratuit.",
       },
       {
         question: "Pourquoi les prix varient autant d'une agence à l'autre ?",
         answer:
-          "Parce que le périmètre change : nombre de pages, fonctionnalités, création de contenu et de visuels, et surtout les frais de structure de l'agence. En travaillant en direct, on garde des tarifs serrés.",
+          "Parce que le périmètre change : nombre de pages, fonctionnalités, création de contenu et de visuels — et surtout les frais de structure de chaque agence. En travaillant en direct, on propose un tarif juste, au plus près de la valeur réelle : ni gonflé, ni bradé.",
       },
       {
         question: "Faut-il payer chaque mois ?",

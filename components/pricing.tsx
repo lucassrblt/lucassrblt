@@ -16,8 +16,8 @@ export function Pricing() {
     <Section
       id="tarifs"
       eyebrow="Tarifs"
-      title="Des formules transparentes et adaptées à vos besoins."
-      lead="Des points de départ clairs — le tarif final dépend de votre projet. Chaque devis est gratuit et sans engagement."
+      title="Des formules transparentes, adaptées à tous les budgets."
+      lead="Des points de départ clairs — on adapte le périmètre à votre budget, jamais le soin apporté au site. Le tarif final dépend de votre projet, et chaque devis est gratuit et sans engagement."
       width="wide"
     >
       {/* Socle « inclus dans toutes les formules » */}
