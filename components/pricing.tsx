@@ -2,10 +2,10 @@ import { Check } from "lucide-react";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { BadgeSticker } from "@/components/badge-sticker";
-import { MagneticButton } from "@/components/magnetic";
+import { BookingButton } from "@/components/booking-button";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { plans, includedAll, hero } from "@/lib/content";
+import { plans, includedAll } from "@/lib/content";
 
 /**
  * Section Tarifs : un socle « tout inclus » commun, puis 3 formules qui ne
@@ -104,8 +104,8 @@ export function Pricing() {
                 ))}
               </ul>
 
-              <MagneticButton
-                href={hero.ctaPrimary.href}
+              <BookingButton
+                magnetic
                 className={cn(
                   buttonVariants(),
                   "mt-8 h-11 rounded-full px-5 text-sm font-bold",
@@ -115,7 +115,7 @@ export function Pricing() {
                 )}
               >
                 Demander un devis
-              </MagneticButton>
+              </BookingButton>
               <p
                 className={cn(
                   "mt-3 text-center text-xs",

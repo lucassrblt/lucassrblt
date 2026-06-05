@@ -2,7 +2,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { BadgeSticker } from "@/components/badge-sticker";
 import { HeroVisual } from "@/components/hero-visual";
-import { MagneticButton } from "@/components/magnetic";
+import { BookingButton } from "@/components/booking-button";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { hero } from "@/lib/content";
@@ -40,8 +40,8 @@ export function Hero() {
 
           <Reveal delay={0.18}>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <MagneticButton
-                href={hero.ctaPrimary.href}
+              <BookingButton
+                magnetic
                 className={cn(
                   buttonVariants(),
                   "h-12 rounded-full bg-primary px-7 text-base font-bold text-primary-foreground shadow-soft hover:bg-primary",
@@ -49,7 +49,7 @@ export function Hero() {
               >
                 {hero.ctaPrimary.label}
                 <ArrowRight className="size-5" />
-              </MagneticButton>
+              </BookingButton>
               <a
                 href={hero.ctaSecondary.href}
                 className={cn(

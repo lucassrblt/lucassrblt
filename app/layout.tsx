@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { JsonLd } from "@/components/json-ld";
+import { CalEmbed } from "@/components/cal-embed";
 import { site, hero } from "@/lib/content";
 import { siteUrl } from "@/lib/site-url";
 
@@ -76,6 +77,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <JsonLd />
         <SmoothScroll>{children}</SmoothScroll>
+        <CalEmbed />
         <Analytics />
       </body>
     </html>

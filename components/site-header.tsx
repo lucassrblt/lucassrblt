@@ -5,8 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { MagneticButton } from "@/components/magnetic";
-import { site, hero } from "@/lib/content";
+import { BookingButton } from "@/components/booking-button";
+import { site } from "@/lib/content";
 
 const navItems = [
   { id: "offres", label: "Offres" },
@@ -125,15 +125,15 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <MagneticButton
-          href={hero.ctaPrimary.href}
+        <BookingButton
+          magnetic
           className={cn(
             buttonVariants(),
             "h-10 justify-self-end rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground shadow-soft hover:bg-primary",
           )}
         >
           Devis gratuit
-        </MagneticButton>
+        </BookingButton>
       </div>
     </header>
   );

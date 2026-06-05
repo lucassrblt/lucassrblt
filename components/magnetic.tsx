@@ -16,6 +16,8 @@ export function MagneticButton({
   strength = 0.4,
   target,
   rel,
+  "data-cal-link": dataCalLink,
+  "data-cal-config": dataCalConfig,
 }: {
   href: string;
   className?: string;
@@ -24,6 +26,9 @@ export function MagneticButton({
   strength?: number;
   target?: string;
   rel?: string;
+  /** Attributs d'embed Cal.com : ouvrent la résa en popup au clic. */
+  "data-cal-link"?: string;
+  "data-cal-config"?: string;
 }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLAnchorElement>(null);
@@ -49,6 +54,8 @@ export function MagneticButton({
       href={href}
       target={target}
       rel={rel}
+      data-cal-link={dataCalLink}
+      data-cal-config={dataCalConfig}
       onMouseMove={onMove}
       onMouseLeave={reset}
       style={reduce ? undefined : { x: sx, y: sy }}

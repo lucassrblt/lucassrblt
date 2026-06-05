@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { site, hero } from "@/lib/content";
+import { BookingButton } from "@/components/booking-button";
+import { site } from "@/lib/content";
 
 /**
  * Header allégé pour les landing pages SEO (/offres/[slug]).
@@ -21,15 +22,14 @@ export function LandingHeader() {
           <img src="/biome.svg" alt={site.name} className="block h-18 w-auto" />
         </Link>
 
-        <a
-          href={hero.ctaPrimary.href}
+        <BookingButton
           className={cn(
             buttonVariants(),
             "h-10 rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground shadow-soft hover:bg-primary",
           )}
         >
           Devis gratuit
-        </a>
+        </BookingButton>
       </div>
     </header>
   );

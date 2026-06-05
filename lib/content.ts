@@ -333,16 +333,18 @@ export const guarantees: Guarantee[] = [
 ];
 
 /**
- * Prise de RDV. Colle ici l'URL de ton lien de réservation — fonctionne avec
- * **Calendly** (ex. "https://calendly.com/biome/15min") OU **Google Agenda**
- * (« plages de rendez-vous » → page publique qui crée un lien Meet auto).
- * Laisse vide ("") tant que le compte n'est pas prêt : le site retombe alors
- * proprement sur le bouton « devis par email », rien ne casse.
+ * Prise de RDV via **Cal.com**. On stocke le lien au format « compte/event »
+ * (sans le domaine) : c'est ce qu'attend l'embed Cal.com (`data-cal-link`).
+ * Tous les CTA du site ouvrent ce lien en popup (cf. <BookingButton>).
+ * Laisse vide ("") tant que le compte n'est pas prêt : les CTA retombent alors
+ * proprement sur le devis par email, rien ne casse.
  */
 export const booking = {
-  url: "", // ← URL Calendly ou Google « plages de RDV »
+  calLink: "biomestudio/15min",
+  /** Région Cal.com : "https://cal.eu" (compte EU) ou "https://cal.com" (US). */
+  calOrigin: "https://cal.eu",
   label: "Réserver un appel gratuit",
-  note: "15 min, sans engagement — on parle de votre projet.",
+  note: "30 min, sans engagement — on parle de votre projet.",
 } as const;
 
 /** Bloc d'appel à l'action de la section contact. */

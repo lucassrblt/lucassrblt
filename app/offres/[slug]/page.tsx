@@ -12,6 +12,7 @@ import { Process } from "@/components/process";
 import { Guarantees } from "@/components/guarantees";
 import { Projects } from "@/components/projects";
 import { Contact } from "@/components/contact";
+import { BookingButton } from "@/components/booking-button";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { landingPages, hero, type LandingSection } from "@/lib/content";
@@ -83,15 +84,14 @@ export default async function LandingPage({ params }: PageProps) {
                 {page.intro}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-                <a
-                  href={hero.ctaPrimary.href}
+                <BookingButton
                   className={cn(
                     buttonVariants(),
                     "h-12 rounded-full bg-primary px-7 text-base font-bold text-primary-foreground shadow-soft hover:bg-primary",
                   )}
                 >
                   {hero.ctaPrimary.label}
-                </a>
+                </BookingButton>
                 <Link
                   href="/"
                   className="text-sm font-semibold text-foreground/70 underline-offset-4 transition-colors hover:text-foreground hover:underline"
