@@ -169,7 +169,7 @@ export const projects: Project[] = [
     sector: "Bistrot italien",
     kind: "demo",
     href: "https://la-barcarola.vercel.app",
-    image: "",
+    image: "/realisations/la-barcarola.webp",
     feature: "Réservation en ligne",
     featured: true,
     preview: {
