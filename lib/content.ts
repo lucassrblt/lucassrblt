@@ -187,7 +187,7 @@ export const projects: Project[] = [
     sector: "Barbier",
     kind: "demo",
     href: "https://atelier-brut-pink.vercel.app",
-    image: "",
+    image: "/realisations/atelier-brut.webp",
     feature: "Prise de RDV en ligne",
     preview: {
       brand: "Atelier Brut",
