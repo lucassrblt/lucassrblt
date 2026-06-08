@@ -148,6 +148,23 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Cabinet Rimbault",
+    sector: "Immobilier",
+    kind: "client",
+    href: "https://cabinet-rimbault.fr?preview=lucas",
+    image: "/realisations/cabinet-rimbault.webp",
+    feature: "Estimation en ligne",
+    preview: {
+      brand: "Cabinet Rimbault",
+      domain: "cabinet-rimbault.fr",
+      nav: ["Accueil", "Biens", "À propos", "Contact"],
+      navCta: "Estimer mon bien",
+      headline: "Votre partenaire immobilier de confiance.",
+      heroCta: "Voir les biens",
+      imageLabel: "Hero Cabinet Rimbault — déposer cabinet-rimbault.png",
+    },
+  },
+  {
     title: "Maison Lavigne",
     sector: "Bistrot de marché",
     kind: "demo",
@@ -197,23 +214,6 @@ export const projects: Project[] = [
       headline: "Plus qu'un club, une passion !",
       heroCta: "Découvrir le club",
       imageLabel: "Hero Asnières Basketball — déposer asnieres-basketball.png",
-    },
-  },
-  {
-    title: "Cabinet Rimbault",
-    sector: "Immobilier",
-    kind: "client",
-    href: "https://cabinet-rimbault.fr?preview=lucas",
-    image: "/realisations/cabinet-rimbault.webp",
-    feature: "Estimation en ligne",
-    preview: {
-      brand: "Cabinet Rimbault",
-      domain: "cabinet-rimbault.fr",
-      nav: ["Accueil", "Biens", "À propos", "Contact"],
-      navCta: "Estimer mon bien",
-      headline: "Votre partenaire immobilier de confiance.",
-      heroCta: "Voir les biens",
-      imageLabel: "Hero Cabinet Rimbault — déposer cabinet-rimbault.png",
     },
   },
 ];
