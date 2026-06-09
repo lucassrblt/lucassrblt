@@ -8,7 +8,9 @@ import { Projects } from "@/components/projects";
 import { Process } from "@/components/process";
 import { Guarantees } from "@/components/guarantees";
 import { Pricing } from "@/components/pricing";
+import { Faq } from "@/components/faq";
 import { Contact } from "@/components/contact";
+import { homeFaq } from "@/lib/content";
 import { SiteFooter } from "@/components/site-footer";
 
 export default function Home() {
@@ -25,6 +27,7 @@ export default function Home() {
         <Process />
         <Guarantees />
         <Pricing />
+        <Faq items={homeFaq} />
         <Contact />
       </main>
       <SiteFooter />

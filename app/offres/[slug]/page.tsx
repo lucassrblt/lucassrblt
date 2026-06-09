@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/reveal";
 import { LandingHeader } from "@/components/landing-header";
-import { LandingFaq } from "@/components/landing-faq";
+import { Faq } from "@/components/faq";
 import { SiteFooter } from "@/components/site-footer";
 import { Offers } from "@/components/offers";
 import { Pricing } from "@/components/pricing";
@@ -109,7 +109,7 @@ export default async function LandingPage({ params }: PageProps) {
           return <SectionComponent key={key} />;
         })}
 
-        <LandingFaq items={page.faq} />
+        <Faq items={page.faq} />
         <Contact />
       </main>
       <SiteFooter />

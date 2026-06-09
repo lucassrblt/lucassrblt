@@ -7,7 +7,7 @@
 export const site = {
   name: "Biome",
   role: "Studio web pour commerçants",
-  email: "biomestudio@gmail.com",
+  email: "contact@biomestudio.fr",
   founder: "Lucas Rimbault",
   website: "https://www.biomestudio.fr",
   location: "France",
@@ -204,16 +204,16 @@ export const projects: Project[] = [
     sector: "Club de basket · Asnières",
     kind: "demo",
     href: "https://asnieresbasketball.vercel.app",
-    image: "",
+    image: "/realisations/asnieres-basketball.webp",
     feature: "Calendrier des matchs",
     preview: {
       brand: "Asnières Basketball",
       domain: "asnieres-basketball.fr",
-      nav: ["Le club", "Équipes", "Championnats", "Gymnases", "Contact"],
-      navCta: "Rejoindre le club",
+      nav: ["Accueil", "Club", "Équipes 2025-26", "Championnats", "Gymnases", "Contacts"],
+      navCta: "Nous contacter",
       headline: "Plus qu'un club, une passion !",
       heroCta: "Découvrir le club",
-      imageLabel: "Hero Asnières Basketball — déposer asnieres-basketball.png",
+      imageLabel: "Capture Asnières Basketball",
     },
   },
 ];
@@ -310,6 +310,47 @@ export const plans: Plan[] = [
   },
 ];
 
+/** Une question/réponse de FAQ (accueil ou landing page). */
+export type FaqItem = { question: string; answer: string };
+
+/**
+ * FAQ de l'accueil — orientée **conversion** (lève les freins d'un commerçant
+ * juste avant le CTA Contact), distincte des FAQ SEO des landing pages.
+ * Affichée toujours visible + schéma FAQPage (cf. <Faq>).
+ */
+export const homeFaq: FaqItem[] = [
+  {
+    question: "Combien ça coûte vraiment ?",
+    answer:
+      "Nos formules démarrent à 490 €, tout inclus, et un site multi-pages avec réservation tourne autour de 1 099 €. Le tarif exact dépend de votre projet — nombre de pages, fonctionnalités, contenus à créer — et le devis est toujours gratuit et sans engagement. Aucun frais surprise : le prix annoncé est le prix payé.",
+  },
+  {
+    question: "Y a-t-il un abonnement mensuel ?",
+    answer:
+      "Non. Vous payez la création du site une seule fois. Le nom de domaine, l'hébergement, le certificat SSL et 6 mois de maintenance sont compris. Au-delà, la maintenance reste optionnelle — jamais imposée.",
+  },
+  {
+    question: "Suis-je propriétaire de mon site et de mon domaine ?",
+    answer:
+      "Oui, à 100 %. Le site et le nom de domaine vous appartiennent : vous n'êtes jamais prisonnier d'un prestataire. Si un jour vous souhaitez partir, vous repartez avec tout.",
+  },
+  {
+    question: "Je n'ai pas de logo ni de photos, est-ce un problème ?",
+    answer:
+      "Pas du tout. On peut créer votre identité visuelle — logo, couleurs, univers — et vous conseiller sur les visuels si vous n'en avez pas encore. On part de ce que vous avez, même si c'est une page blanche.",
+  },
+  {
+    question: "Mon site sera-t-il visible sur Google ?",
+    answer:
+      "Oui. Le référencement local est intégré dès le départ : on optimise votre fiche Google Business et les bases SEO pour que vos clients vous trouvent quand ils cherchent un commerce comme le vôtre, près de chez eux.",
+  },
+  {
+    question: "Et si le rendu ne me plaît pas ?",
+    answer:
+      "On affine ensemble jusqu'à ce que le site vous ressemble vraiment. Vous voyez le travail avant la mise en ligne et on ajuste autant que nécessaire — c'est notre engagement « satisfait ou ajusté ».",
+  },
+];
+
 export type Guarantee = { title: string; description: string };
 
 /** « Nos engagements » — réassurance pour lever les freins. */
@@ -384,8 +425,6 @@ export type LandingSection =
   | "guarantees"
   | "projects";
 
-export type LandingFaqItem = { question: string; answer: string };
-
 export type LandingPage = {
   /** Segment d'URL : /offres/<slug>. Doit contenir le mot-clé. */
   slug: string;
@@ -403,7 +442,7 @@ export type LandingPage = {
   /** Sections du one-page à réafficher, dans l'ordre. */
   sections: LandingSection[];
   /** FAQ unique → contenu propre + schéma FAQPage (résultats enrichis). */
-  faq: LandingFaqItem[];
+  faq: FaqItem[];
 };
 
 export const landingPages: LandingPage[] = [

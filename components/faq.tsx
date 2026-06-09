@@ -1,13 +1,14 @@
 import { Section } from "@/components/section";
 import { Reveal } from "@/components/reveal";
-import type { LandingFaqItem } from "@/lib/content";
+import type { FaqItem } from "@/lib/content";
 
 /**
- * FAQ d'une landing page : contenu toujours visible (meilleur pour le crawl)
- * + données structurées FAQPage (éligibilité aux résultats enrichis Google).
- * Le contenu de chaque page étant unique, le schéma l'est aussi.
+ * Section FAQ réutilisable (accueil + landing pages) : contenu toujours visible
+ * (meilleur pour le crawl) + données structurées FAQPage (éligibilité aux
+ * résultats enrichis Google). Le schéma reflète exactement les `items` passés,
+ * donc reste unique par page.
  */
-export function LandingFaq({ items }: { items: LandingFaqItem[] }) {
+export function Faq({ items }: { items: FaqItem[] }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
